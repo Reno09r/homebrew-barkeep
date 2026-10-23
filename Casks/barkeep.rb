@@ -11,12 +11,6 @@ cask "barkeep" do
 
   app "BarKeep.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/BarKeep.app"],
-                   sudo: false
-  end
-
   zap trash: [
     "~/Library/Caches/com.reno.barkeep",
     "~/Library/HTTPStorages/com.reno.barkeep",
