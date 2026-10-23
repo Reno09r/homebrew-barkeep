@@ -17,4 +17,12 @@ cask "barkeep" do
     "~/Library/Logs/BarKeep.log",
     "~/Library/Preferences/com.reno.barkeep.plist",
   ]
+
+  caveats <<~EOS
+    BarKeep is self-signed. If macOS Gatekeeper blocks it from opening, run:
+      xattr -cr /Applications/BarKeep.app
+
+    Or install with:
+      brew install --cask --no-quarantine reno09r/barkeep/barkeep
+  EOS
 end
