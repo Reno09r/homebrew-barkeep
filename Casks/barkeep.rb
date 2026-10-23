@@ -1,6 +1,6 @@
 cask "barkeep" do
   version "0.1.0"
-  sha256 "77911969231b739b6ec558b3d05f55960d9cbec6ab731f0015e4dcdb0f0ef7f5"
+  sha256 "bdaa23f8b3e169eeb817c697d5db78505cd966c2e3806cb089d4356d93640637"
 
   url "https://github.com/Reno09r/BarKeep/releases/download/v#{version}/BarKeep.dmg"
   name "BarKeep"
@@ -11,6 +11,12 @@ cask "barkeep" do
 
   app "BarKeep.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/BarKeep.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Caches/com.reno.barkeep",
     "~/Library/HTTPStorages/com.reno.barkeep",
@@ -19,10 +25,8 @@ cask "barkeep" do
   ]
 
   caveats <<~EOS
-    BarKeep is self-signed. If macOS Gatekeeper blocks it from opening, run:
+    BarKeep is signed with a local developer certificate.
+    If macOS Gatekeeper blocks it from opening, run:
       xattr -cr /Applications/BarKeep.app
-
-    Or install with:
-      brew install --cask --no-quarantine reno09r/barkeep/barkeep
   EOS
 end
