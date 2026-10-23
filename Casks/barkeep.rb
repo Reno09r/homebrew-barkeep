@@ -7,7 +7,7 @@ cask "barkeep" do
   desc "Lightweight macOS menu bar manager with floating HUD panel"
   homepage "https://github.com/Reno09r/BarKeep"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "BarKeep.app"
 
